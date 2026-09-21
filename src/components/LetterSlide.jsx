@@ -8,16 +8,35 @@ const highlightedPhrases = [
 ];
 
 function renderLetterText(text) {
-  const escapedPhrases = highlightedPhrases.map((phrase) => phrase.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'));
-  const phrasePattern = new RegExp(`(${escapedPhrases.join('|')})`, 'g');
+  const parts = [];
+  let remainingText = text;
+  let key = 0;
 
-  return text.split(phrasePattern).map((part, index) => (
-    highlightedPhrases.includes(part) ? (
-      <span key={`${part}-${index}`} className="underline decoration-violet-400 decoration-2 underline-offset-4">
-        {part}
-      </span>
-    ) : part
-  ));
+  while (remainingText) {
+    const matches = highlightedPhrases
+      .map((phrase) => ({ phrase, index: remainingText.indexOf(phrase) }))
+      .filter(({ index }) => index >= 0)
+      .sort((first, second) => first.index - second.index);
+    const nextMatch = matches[0];
+
+    if (!nextMatch) {
+      parts.push(remainingText);
+      break;
+    }
+
+    if (nextMatch.index > 0) {
+      parts.push(remainingText.slice(0, nextMatch.index));
+    }
+    parts.push(
+      <span key={`${nextMatch.phrase}-${key}`} className="underline decoration-violet-400 decoration-2 underline-offset-4">
+        {nextMatch.phrase}
+      </span>,
+    );
+    remainingText = remainingText.slice(nextMatch.index + nextMatch.phrase.length);
+    key += 1;
+  }
+
+  return parts;
 }
 
 export default function LetterSlide({ displayedText, onRestart }) {
@@ -31,7 +50,7 @@ export default function LetterSlide({ displayedText, onRestart }) {
           <Sparkles className="w-4 h-4 text-rose-400" />
         </div>
         <div className="overflow-y-auto pr-2 flex-1 scrollbar-thin scrollbar-thumb-rose-300">
-          <p className="font-serif text-sm sm:text-base leading-relaxed whitespace-pre-line text-rose-900/90">{renderLetterText(displayedText)}</p>
+          <p className="font-serif text-sm sm:text-base leading-relaxed whitespace-pre-wrap text-rose-900/90">{renderLetterText(displayedText)}</p>
         </div>
         <div className="mt-6 pt-4 border-t border-rose-200/60 flex justify-center">
           <button onClick={onRestart} className="px-5 py-2.5 bg-rose-100 hover:bg-rose-200 text-rose-800 rounded-full text-xs font-semibold flex items-center gap-2 transition-colors"><RefreshCw className="w-3.5 h-3.5" /><span>Volver al inicio</span></button>
