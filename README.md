@@ -1,16 +1,34 @@
-# React + Vite
+# Flores Amarillas
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Experiencia interactiva hecha con React y Vite: incluye una carta animada, galería de fotos, campo de girasoles, música de fondo y navegación por etapas.
 
-Currently, two official plugins are available:
+## Requisitos
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+- Node.js 20 o superior
+- npm
 
-## React Compiler
+## Instalación
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+```bash
+npm install
+npm run dev
+```
 
-## Expanding the ESLint configuration
+La aplicación estará disponible en `http://localhost:5173`.
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## Scripts
+
+- `npm run dev`: inicia el servidor de desarrollo.
+- `npm run build`: genera la versión de producción.
+- `npm run preview`: sirve localmente el build generado.
+- `npm run lint`: revisa el código con ESLint.
+
+## Firebase opcional
+
+La aplicación funciona sin Firebase y guarda los eventos localmente. Para activar el registro remoto, copia `.env.example` como `.env.local` y completa las variables con la configuración de tu proyecto Firebase.
+
+No subas `.env.local` ni otras variables privadas al repositorio.
+
+## Recursos locales
+
+Las fotos de la galería están en `public/images` y la música en `public/audio`. Estos archivos forman parte de la experiencia y se sirven como recursos estáticos.
