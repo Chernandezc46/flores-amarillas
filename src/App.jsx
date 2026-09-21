@@ -117,7 +117,7 @@ export default function App() {
       } else {
         clearInterval(interval);
       }
-    }, 35);
+    }, 12);
     return () => clearInterval(interval);
   }, [currentSlide]);
 

@@ -15,7 +15,7 @@ export default function GallerySlide({ photos, currentPhotoIndex, onPrevious, on
             <img src={photo.url} alt={photo.caption} className="w-full h-full object-cover" />
           </div>
           <div className="pt-4 pb-2 px-2 text-center">
-            <p className="font-serif text-rose-900 text-base sm:text-lg font-medium italic">&quot;{photo.caption}&quot;</p>
+            <p className="font-serif text-rose-900 text-base sm:text-lg font-medium italic leading-relaxed break-words">&quot;{photo.caption}&quot;</p>
             <span className="text-xs text-rose-400 mt-1 block">{currentPhotoIndex + 1} de {photos.length}</span>
           </div>
         </div>
