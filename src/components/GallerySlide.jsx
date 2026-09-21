@@ -10,7 +10,7 @@ export default function GallerySlide({ photos, currentPhotoIndex, onPrevious, on
           <span className="text-xs font-semibold uppercase tracking-widest text-rose-300">Galería</span>
           <h2 className="text-xl sm:text-2xl font-serif font-bold text-white">Mis momentos Favoritos</h2>
         </div>
-        <div className="w-full bg-white p-4 rounded-xl shadow-2xl transform rotate-1 hover:rotate-0 transition-transform duration-300">
+        <div key={photo.id} className="w-full bg-white p-4 rounded-xl shadow-2xl transform rotate-1 hover:rotate-0 transition-transform duration-300">
           <div className="relative aspect-[4/3] bg-rose-100 rounded-lg overflow-hidden border border-rose-200">
             <img src={photo.url} alt={photo.caption} className="w-full h-full object-cover" />
           </div>
