@@ -7,7 +7,7 @@ const highlightedPhrases = [
   'construir algo bonito',
 ];
 
-function renderLetterText(text) {
+function renderHighlightedText(text) {
   const parts = [];
   let remainingText = text;
   let key = 0;
@@ -40,6 +40,8 @@ function renderLetterText(text) {
 }
 
 export default function LetterSlide({ displayedText, onRestart }) {
+  const paragraphs = displayedText.split(/\n\n/);
+
   return (
     <div className="absolute inset-0 flex flex-col items-center justify-center p-4 sm:p-6 z-10 bg-gradient-to-b from-rose-950 via-rose-900 to-pink-950 animate-fade-in">
       <div className="max-w-lg w-full bg-amber-50/95 text-rose-950 p-6 sm:p-8 rounded-3xl shadow-2xl border-4 border-rose-200/50 relative overflow-hidden max-h-[80dvh] flex flex-col">
@@ -50,7 +52,13 @@ export default function LetterSlide({ displayedText, onRestart }) {
           <Sparkles className="w-4 h-4 text-rose-400" />
         </div>
         <div className="overflow-y-auto pr-2 flex-1 scrollbar-thin scrollbar-thumb-rose-300">
-          <p className="font-serif text-sm sm:text-base leading-relaxed whitespace-pre-wrap text-rose-900/90">{renderLetterText(displayedText)}</p>
+          <div className="font-serif text-sm sm:text-base leading-relaxed text-rose-900/90">
+            {paragraphs.map((paragraph, index) => (
+              <p key={`letter-paragraph-${index}`} className="mb-4 last:mb-0">
+                {renderHighlightedText(paragraph)}
+              </p>
+            ))}
+          </div>
         </div>
         <div className="mt-6 pt-4 border-t border-rose-200/60 flex justify-center">
           <button onClick={onRestart} className="px-5 py-2.5 bg-rose-100 hover:bg-rose-200 text-rose-800 rounded-full text-xs font-semibold flex items-center gap-2 transition-colors"><RefreshCw className="w-3.5 h-3.5" /><span>Volver al inicio</span></button>
