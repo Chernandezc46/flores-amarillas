@@ -31,8 +31,8 @@ if (Object.values(firebaseConfig).every(Boolean)) {
 }
 
 const PHOTOS = [
-  { id: 1, url: '/images/upright-foto-2.jpeg', caption: 'Tu sonrisa que ilumina hasta los días más oscuros' },
-  { id: 2, url: '/images/upright-foto-3.jpeg', caption: 'Son pocos los momentos a tu lado pero son mágicos' },
+  { id: 1, url: '/images/foto-2.jpeg', caption: 'Tu sonrisa que ilumina hasta los días más oscuros' },
+  { id: 2, url: '/images/foto-3.jpeg', caption: 'Son pocos los momentos a tu lado pero son mágicos' },
   { id: 3, url: '/images/foto-1.jpeg', caption: 'Tan única y hermosa siempre' },
 ];
 
