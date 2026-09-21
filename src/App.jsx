@@ -102,24 +102,10 @@ export default function App() {
     setCurrentSlide(newIndex);
     logEvent('slide_change', { from: currentSlide, to: newIndex, action: actionName });
     if (newIndex === 3) {
-      setDisplayedText('');
+      setDisplayedText(LETTER_TEXT);
       confetti({ particleCount: 80, spread: 70, origin: { y: 0.6 }, colors: ['#FF1493', '#FF69B4', '#FFD700', '#FFF'] });
     }
   };
-
-  useEffect(() => {
-    if (currentSlide !== 3) return undefined;
-    let index = 0;
-    const interval = setInterval(() => {
-      if (index <= LETTER_TEXT.length) {
-        setDisplayedText(LETTER_TEXT.slice(0, index));
-        index += 1;
-      } else {
-        clearInterval(interval);
-      }
-    }, 12);
-    return () => clearInterval(interval);
-  }, [currentSlide]);
 
   const handleScreenClick = (event) => {
     if (event.target.closest('button') || event.target.closest('input')) return;
